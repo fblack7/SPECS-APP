@@ -43,3 +43,5 @@ async function register(email, password, inviteToken = null) {
   setProfile(snap.data())
   return cred.user
 }
+export { AuthProvider }
+export const useAuth = () => useContext(AuthContext)
