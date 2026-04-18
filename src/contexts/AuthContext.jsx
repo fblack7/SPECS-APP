@@ -52,11 +52,17 @@ export function AuthProvider({ children }) {
     }
 
     // Determine if first user (admin)
-    const usersSnap = await getDocs(collection(db, 'users'))
-    const isFirstUser = usersSnap.empty
+    let isFirstUser = false
+try {
+  const usersSnap = await getDocs(collection(db, 'users'))
+  isFirstUser = usersSnap.empty
+} catch {
+  isFirstUser = true
+}
 
-    if (!isFirstUser && !inviteToken) {
-      throw new Error('Registration is by invitation only. Please ask an administrator for an invite link.')
+if (!isFirstUser && !inviteToken) {
+  throw new Error('Registration is by invitation only. Please ask an administrator for an invite link.')
+}
     }
 
     const cred = await createUserWithEmailAndPassword(auth, email, password)
