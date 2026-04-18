@@ -129,8 +129,7 @@ export default function AuthPage({ mode, token }) {
             {isRegister ? (
               <>Already have an account? <button onClick={() => { setView('login'); setError('') }}>Sign in</button></>
             ) : (
-              <>No account? Registration requires an invitation.</>
-            )}
+<>No account? <button onClick={() => { setView('register'); setError('') }}>Create Account</button></>            )}
           </div>
         )}
       </div>
